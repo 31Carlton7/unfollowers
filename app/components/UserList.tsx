@@ -25,7 +25,7 @@ export const UserList: React.FC = (): JSX.Element => {
             <li key={i} className='w-full'>
               {i === 0 && <UserCard userName='champagnepapi' />}
               {i === 1 && <UserCard userName='31carlton7' />}
-              {i === 2 && <UserCard userName='kingjames' />}
+              {i === 2 && <UserCard userName='lamineyamal' />}
               {i === 3 && <UserCard userName='sza' />}
               {i === 4 && <UserCard userName='michaelrubin' />}
             </li>

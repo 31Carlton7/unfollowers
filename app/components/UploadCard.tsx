@@ -79,18 +79,18 @@ const CardComponent: React.FC = () => {
   return (
     <FileUploader value={files} onValueChange={onValueChange} dropzoneOptions={dropZoneConfig} className=''>
       <FileInput>
-        <div className='m-5'>
+        <div className='mb-6'>
           <div
-            className='relative transform rotate-5 border-[22px] border-white rounded-[60px] shadow-lg -rotate-6'
+            className='relative transform rotate-5 border-[16px] border-white rounded-[48px] shadow-lg -rotate-6'
             style={{
               background: 'linear-gradient(to bottom right, #4F5BD5, #962FC0, #D62977, #FA7E1E, #FEDA76)',
-              width: '225px',
-              height: '350px',
+              width: '168px',
+              height: '270px',
               boxShadow: '0 3px 25px rgba(0, 0, 0, 0.1)',
             }}
           >
             <div className='absolute inset-0 flex items-center justify-center'>
-              <h2 className='text-xl font-bold text-center text-white'>Tap to upload follower data</h2>
+              <h2 className='text-lg font-bold text-center text-white'>Tap to upload follower data</h2>
             </div>
           </div>
         </div>

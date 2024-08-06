@@ -19,9 +19,9 @@ export const UserCard: React.FC<UserCardProps> = ({ userName }: UserCardProps): 
   const link = `https://www.instagram.com/${userName}`;
   const imgSize = 36;
   return (
-    <Card className='rounded-2xl mb-4'>
+    <Card className='rounded-2xl mb-3'>
       <a href={link} target='_blank'>
-        <div className='flex items-center gap-4 m-4'>
+        <div className='flex items-center gap-4 m-3'>
           <img src='/instalogo.png' alt='' width={imgSize} height={imgSize} />
           <div className='flex flex-col items-start gap-1'>
             <CardTitle className='break-all'>{userName}</CardTitle>

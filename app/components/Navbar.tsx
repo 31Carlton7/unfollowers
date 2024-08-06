@@ -11,7 +11,7 @@ import React from 'react';
  */
 const Navbar = (): JSX.Element => {
   return (
-    <nav className='my-8 md:my-4 px-6 md:px-12 w-full'>
+    <nav className='my-8 md:my-3 px-6 md:px-12 w-full'>
       <a href='/'>
         <div className='flex items-center'>
           <img src='logo.png' alt='Unfollowers Logo' className='h-8 mr-2' />

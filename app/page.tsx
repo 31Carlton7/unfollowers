@@ -19,19 +19,22 @@ import { UserListProvider } from '@/contexts/userlist';
 export default function Home(): JSX.Element {
   return (
     <UserListProvider>
-      <div className='absolute flex flex-col items-center w-full h-screen bg-white'>
+      <div className='absolute flex flex-col items-center w-full bg-white min-h-screen'>
         <Navbar />
-        <UploadCard />
-        <div className='flex flex-col items-center justify-center h-[80vh] gap-4'>
-          <div className='flex flex-col md:w-[40.0%] items-center h-full'>
-            <p className='text-4xl text-[#222222] font-bold leading-[120%] text-center'>
-              Check who <span className='italic tracking-tight'>doesn't</span> follow you back on Instagram!
-            </p>
-            <ThreeDButton text='How to use 🤔' />
-            <UserList />
-            <Footer />
+        <main className='flex flex-col flex-grow justify-center items-center'>
+          <UploadCard />
+          <div className='flex flex-col items-center justify-center gap-4'>
+            <div className='flex flex-col md:w-[60.0%] items-center h-full'>
+              <p className='text-4xl text-[#222222] font-bold leading-[120%] text-center'>
+                Check who <span className='italic tracking-tight'>doesn't</span> follow you back on Instagram!
+              </p>
+            </div>
           </div>
-        </div>
+          <ThreeDButton text='How to use 🤔' />
+          <p className='w-full flex justify-center my-2 text-slate-500 text-sm'>⬇️ Your unfollowers ⬇️</p>
+          <UserList />
+        </main>
+        <Footer />
       </div>
     </UserListProvider>
   );
