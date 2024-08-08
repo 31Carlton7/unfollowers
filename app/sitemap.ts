@@ -1,3 +1,6 @@
+/**
+ * This file handles the sitemap.xml file.
+ */
 type SitemapEntry = {
   url: string;
   lastModified: string;
@@ -5,6 +8,11 @@ type SitemapEntry = {
   priority?: number;
 };
 
+/**
+ * Returns an array of sitemap entries for the static pages of the website.
+ *
+ * @return {Promise<SitemapEntry[]>} An array of sitemap entries.
+ */
 export default async function sitemap(): Promise<SitemapEntry[]> {
   const baseUrl = 'https://www.unfollowers.co';
 

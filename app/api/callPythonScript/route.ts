@@ -9,6 +9,7 @@ import { promisify } from 'util';
 import path from 'path';
 import os from 'os';
 
+// Promisify the exec function
 const execAsync = promisify(exec);
 
 /**
