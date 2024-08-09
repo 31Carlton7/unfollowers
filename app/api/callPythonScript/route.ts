@@ -26,6 +26,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     const formData = await request.formData();
     const file = formData.get('file') as File | null;
 
+    // Check if a zip file was uploaded
     if (!file) {
       return NextResponse.json({ error: 'No zip file uploaded' }, { status: 400 });
     }
@@ -45,6 +46,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     // Execute the Python script
     const { stdout, stderr } = await execAsync(`python3 ${pythonScriptPath} ${tempFilePath}`);
 
+    // Handle errors
     if (stderr) {
       console.error('Python script error:', stderr);
       return NextResponse.json({ error: 'Error processing zip file' }, { status: 500 });
@@ -59,9 +61,3 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
-
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
