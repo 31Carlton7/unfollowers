@@ -35,7 +35,7 @@ export default function Home(): JSX.Element {
             <div className='flex flex-col items-center justify-center gap-4'>
               <div className='flex flex-col md:w-[60.0%] items-center h-full'>
                 <p className='text-4xl text-[#222222] font-bold leading-[120%] text-center'>
-                  Check who <span className='italic tracking-tight'>doesn't</span> follow you back on Instagram!
+                  Check who <span className='italic tracking-tight'>doesn&apos;t</span> follow you back on Instagram!
                 </p>
               </div>
             </div>
@@ -59,7 +59,7 @@ export default function Home(): JSX.Element {
                 3. Tap on accounts center &gt; Download Information &gt; Followers and Following
               </li>
               <li className='leading-7'>
-                4. Set the range to whatever you'd like (This will change how many unfollowers you see)
+                4. Set the range to whatever you&apos;d like (This will change how many unfollowers you see)
               </li>
               <li className='leading-7'>5. Tap download</li>
               <li className='leading-7'>6. Check for an email sent from Meta and open on it</li>
