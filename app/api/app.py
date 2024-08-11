@@ -3,8 +3,10 @@ import tempfile
 import subprocess
 import unfollowers
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/api/callUnfollowersScript', methods=['POST'])
 def call_unfollowers_script():
@@ -23,9 +25,6 @@ def call_unfollowers_script():
         with tempfile.NamedTemporaryFile(delete=False, suffix='.zip') as temp_file:
             file.save(temp_file.name)
             temp_file_path = temp_file.name
-
-        # Path to your Python script
-        python_script_path = 'unfollowers.py'
 
         # Execute the Python script
         result = unfollowers.getUnfollowers(temp_file_path)

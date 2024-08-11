@@ -40,6 +40,9 @@ const CardComponent: React.FC = (): JSX.Element => {
         const response = await fetch('/api/callUnfollowersScript', {
           method: 'POST',
           body: formData,
+          headers: {
+            'Access-Control-Allow-Origin': '*',
+          },
         });
 
         const result = await response.json();
@@ -97,47 +100,5 @@ const CardComponent: React.FC = (): JSX.Element => {
     </FileUploader>
   );
 };
-
-{
-  /* <Dialog>
-      <DialogTrigger>
-        
-        
-      </DialogTrigger>
-      <DialogContent className='sm:max-w-xl'>
-        <ScrollArea>
-          <DialogHeader>
-            <DialogTitle>Upload files</DialogTitle>
-            <DialogDescription>Drag and drop your files here or click to browse.</DialogDescription>
-          </DialogHeader>
-          <FileUploader
-            value={files}
-            onValueChange={onValueChange}
-            dropzoneOptions={dropZoneConfig}
-            className='relative space-y-1'
-          >
-            <FileInput className='border border-dashed border-gray-500'>
-              <div className='flex items-center justify-center h-32 w-full border bg-background rounded-md'>
-                <p className='text-gray-400'>Drop files here</p>
-              </div>
-            </FileInput>
-            <FileUploaderContent className=''>
-              {usernames &&
-                usernames?.map((user, i) => (
-                  <div key={i} className=''>
-                    <UserCard userName={user} />
-                  </div>
-                ))}
-            </FileUploaderContent>
-          </FileUploader>
-          <DialogDescription>
-            The file will start with instagram-your-username-date-someID. For example:
-            instagram-31carlton7-2024-07-31-someID.zip
-          </DialogDescription>
-          {error && <DialogDescription className='text-red-500'>{error}</DialogDescription>}
-        </ScrollArea>
-      </DialogContent>
-    </Dialog> */
-}
 
 export default CardComponent;
