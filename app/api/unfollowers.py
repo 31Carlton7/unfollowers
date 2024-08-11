@@ -115,11 +115,23 @@ def extractZipAndReturnNotFollowingBack(zip):
     following = getFollowing(files[1])
     return notFollowingBack(followers, following)
 
+def getUnfollowers(zip_path):
+    """
+    Extracts a zip file, retrieves followers and following data, and returns a list of users who do not follow back.
+
+    Parameters:
+        zip_path (str): The path to the zip file containing the followers and following data.
+
+    Returns:
+        List[str]: A sorted list of strings representing the users who do not follow back.
+    """
+    usernames = extractZipAndReturnNotFollowingBack(zip_path)
+    return usernames
+
 if __name__ == "__main__":
     import sys
     zip_path = sys.argv[1]
     try:
-        usernames = extractZipAndReturnNotFollowingBack(zip_path)
-        print(json.dumps(usernames))
+        print(json.dumps(getUnfollowers(zip_path)))
     except Exception as e:
         print(json.dumps({"error": str(e)}))

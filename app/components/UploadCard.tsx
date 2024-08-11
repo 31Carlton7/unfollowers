@@ -14,7 +14,7 @@ import { useUserListContext } from '@/contexts/userlist';
  *
  * @return {JSX.Element} The rendered card component.
  */
-const CardComponent: React.FC = () => {
+const CardComponent: React.FC = (): JSX.Element => {
   const [files, setFiles] = useState<File[] | null>([]);
   const [error, setError] = useState<string | null>(null);
   const { setUsernames } = useUserListContext();
@@ -29,7 +29,7 @@ const CardComponent: React.FC = () => {
    * @param {File[] | null} value - The new value of the files state.
    * @return {Promise<void>} - A Promise that resolves when the function completes.
    */
-  const onValueChange = async (value: File[] | null) => {
+  const onValueChange = async (value: File[] | null): Promise<void> => {
     try {
       if (value) {
         setFiles(value);
@@ -37,7 +37,7 @@ const CardComponent: React.FC = () => {
         const formData = new FormData();
         formData.append('file', value[0]);
 
-        const response = await fetch('/api/callPythonScript', {
+        const response = await fetch('/api/callUnfollowersScript', {
           method: 'POST',
           body: formData,
         });
@@ -45,11 +45,10 @@ const CardComponent: React.FC = () => {
         const result = await response.json();
 
         if (response.ok) {
-          const temp = JSON.parse(result) as string[];
-          if (temp.length === 0) {
+          if (result.length === 0) {
             setUsernames(['-1']);
           } else {
-            setUsernames(temp);
+            setUsernames(result);
           }
         } else {
           setFiles([]);
