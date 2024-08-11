@@ -8,7 +8,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-@app.route('/api/callUnfollowersScript', methods=['POST'])
+@app.route('/api/callUnfollowersScript', methods=['POST', 'OPTIONS'])
 def call_unfollowers_script():
     try:
         # Check if a file was uploaded
@@ -20,6 +20,10 @@ def call_unfollowers_script():
         # Check if the filename is empty
         if file.filename == '':
             return jsonify({"error": "No selected file"}), 400
+        
+        # Check if the file is a zip file and if it starts with "instagram"
+        if not file.filename.endswith('.zip') or not file.filename.startswith('instagram'):
+            return jsonify({"error": "Invalid zip file"}), 400
 
         # Create a temporary file
         with tempfile.NamedTemporaryFile(delete=False, suffix='.zip') as temp_file:
