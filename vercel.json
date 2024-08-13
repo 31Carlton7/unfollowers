@@ -1,7 +1,0 @@
-{
-  "version": 2,
-  "outputDirectory": "Next.js default",
-  "installCommand": "bun install",
-  "devCommand": "concurrently \"bun run next-dev\" \"bun run flask-dev\"",
-  "routes": [{ "src": "/api/(.*)", "dest": "/api/$1" }]
-}
