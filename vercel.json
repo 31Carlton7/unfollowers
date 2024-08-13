@@ -1,1 +1,9 @@
-{}
+{
+  "version": 2,
+  "buildCommand": "next build",
+  "outputDirectory": "Next.js default",
+  "installCommand": "bun install",
+  "devCommand": "concurrently \"bun run next-dev\" \"bun run flask-dev\"",
+  "builds": [{ "src": "api/*.py", "use": "@vercel/python" }],
+  "routes": [{ "src": "/api/(.*)", "dest": "/api/$1" }]
+}
