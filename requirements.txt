@@ -15,11 +15,6 @@ cfgv==3.4.0
 charset-normalizer
 cleo==2.1.0
 click==8.1.7
-conda
-conda-content-trust
-conda-libmamba-solver
-conda-package-handling
-conda_package_streaming
 crashtest==0.4.1
 cryptography
 deprecation==2.1.0
