@@ -20,7 +20,7 @@ const CardComponent: React.FC = (): JSX.Element => {
   const { setUsernames } = useUserListContext();
 
   /**
-   * Updates the state with the new value of the files and performs a POST request to '/api/callPythonScript'
+   * Updates the state with the new value of the files and performs a POST request to '/api/instagram'
    * with the first file from the value array. If the response is successful, updates the usernames state with
    * the parsed result. If the response is not successful, clears the files state and sets the error state with
    * the result error message. If an error occurs during the process, clears the files state and sets the error
@@ -37,7 +37,7 @@ const CardComponent: React.FC = (): JSX.Element => {
         const formData = new FormData();
         formData.append('file', value[0]);
 
-        const response = await fetch('/api/callUnfollowersScript', {
+        const response = await fetch('/api/instagram', {
           method: 'POST',
           body: formData,
           headers: {
