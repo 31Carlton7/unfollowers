@@ -45,12 +45,6 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
   }
 }
 
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
-
 /**
  * Extracts the contents of a zip file from the local file system and navigates to the target files.
  * @param zipPath The path to the zip file.
@@ -126,5 +120,3 @@ function extractZipAndReturnNotFollowingBack(zip: string): string[] {
 function getUnfollowers(zipPath: string): string[] {
   return extractZipAndReturnNotFollowingBack(zipPath);
 }
-
-export { getUnfollowers };
