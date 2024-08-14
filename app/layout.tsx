@@ -7,6 +7,8 @@ import { Plus_Jakarta_Sans } from 'next/font/google';
 import './globals.css';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import { config } from '@fortawesome/fontawesome-svg-core';
+import './globals.css';
+import { CSPostHogProvider } from './providers';
 config.autoAddCss = false;
 
 // Set the font family for Plus Jakarta Sans
@@ -61,7 +63,9 @@ export default function RootLayout({
 }>): JSX.Element {
   return (
     <html lang='en'>
-      <body className={plusJakartaSans.className}>{children}</body>
+      <CSPostHogProvider>
+        <body className={plusJakartaSans.className}>{children}</body>
+      </CSPostHogProvider>
     </html>
   );
 }

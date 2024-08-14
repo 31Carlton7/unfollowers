@@ -8,6 +8,7 @@ import React, { useState } from 'react';
 import { FileUploader, FileInput } from '@/components/extension/file-uploader';
 import { DropzoneOptions } from 'react-dropzone';
 import { useUserListContext } from '@/contexts/userlist';
+import posthog from 'posthog-js';
 
 /**
  * Renders a card component that allows users to upload a file.
@@ -48,17 +49,27 @@ const CardComponent: React.FC = (): JSX.Element => {
         const result = await response.json();
 
         if (response.ok) {
+          // Capture successful upload in PostHog
+          posthog.capture('Zip File Uploaded', { property: 'Successfully' });
+          posthog.capture('Number of Instagrm Unfollowers', { property: result.length });
+
           if (result.length === 0) {
             setUsernames(['-1']);
           } else {
             setUsernames(result);
           }
         } else {
+          // Capture failed upload in PostHog
+          posthog.capture('Zip File Uploaded', { property: `With Error: ${result.error}` });
+
           setFiles([]);
           setError(result.error);
         }
       }
     } catch (err: any) {
+      // Capture failed upload in PostHog
+      posthog.capture('Zip File Uploaded', { property: `With Error: ${err.message}` });
+
       setFiles([]);
       setError(`An error occurred: ${err.message}`);
     }
