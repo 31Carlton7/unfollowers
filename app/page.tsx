@@ -60,7 +60,7 @@ export default function Home(): JSX.Element {
                 information &gt; Some of your information
               </li>
               <li className='leading-7'>
-                4. Scroll down under "Connections" and select Followers and Following &gt; Next
+                4. Scroll down under &quot;Connections&quot; and select Followers and Following &gt; Next
               </li>
               <li className='leading-7'>
                 5. (IMPORTANT) Set format to JSON &gt; Set the range to whatever you&apos;d like (This will change how
