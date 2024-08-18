@@ -56,16 +56,24 @@ export default function Home(): JSX.Element {
               <li className='leading-7'>1. Open Instagram and go to your profile</li>
               <li className='leading-7'>2. Tap on the 3 lines in the top corner and go to settings</li>
               <li className='leading-7'>
-                3. Tap on accounts center &gt; Download Information &gt; Followers and Following
+                3. Tap on accounts center &gt; Your Information &gt; Download Information &gt; Download or transfer
+                information &gt; Some of your information
               </li>
               <li className='leading-7'>
-                4. Set the range to whatever you&apos;d like (This will change how many unfollowers you see)
+                4. Scroll down under "Connections" and select Followers and Following &gt; Next
               </li>
-              <li className='leading-7'>5. Tap download</li>
-              <li className='leading-7'>6. Check for an email sent from Meta and open on it</li>
-              <li className='leading-7'>7. Tap the download information link &gt; Sign in &gt; Save the zip file</li>
-              <li className='leading-7'>8. Come back to the unfollowers.co website and Upload the zip file</li>
-              <li className='leading-7'>9. Then enjoy :)</li>
+              <li className='leading-7'>
+                5. (IMPORTANT) Set format to JSON &gt; Set the range to whatever you&apos;d like (This will change how
+                many unfollowers you see) &gt; Create files
+              </li>
+              <li className='leading-7'>
+                7. Check for an email sent from Meta and open on it or keep refreshing the download information page
+              </li>
+              <li className='leading-7'>
+                8. Go back to the Download information page &gt; Sign in &gt; Save the zip file
+              </li>
+              <li className='leading-7'>9. Come back to the unfollowers.co website and Upload the zip file</li>
+              <li className='leading-7'>10. Then enjoy :) Happy unfollowing!</li>
             </ul>
           </DialogDescription>
         </DialogHeader>
