@@ -19,6 +19,12 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 
+import '@vidstack/react/player/styles/default/theme.css';
+import '@vidstack/react/player/styles/default/layouts/video.css';
+
+import { MediaPlayer, MediaProvider } from '@vidstack/react';
+import { defaultLayoutIcons, DefaultVideoLayout } from '@vidstack/react/player/layouts/default';
+
 /**
  * A React functional component that renders the home page of the application.
  *
@@ -52,29 +58,10 @@ export default function Home(): JSX.Element {
         <DialogHeader>
           <DialogTitle>How to use unfollowers 🤔</DialogTitle>
           <DialogDescription>
-            <ul>
-              <li className='leading-7'>1. Open Instagram and go to your profile</li>
-              <li className='leading-7'>2. Tap on the 3 lines in the top corner and go to settings</li>
-              <li className='leading-7'>
-                3. Tap on accounts center &gt; Your Information &gt; Download Information &gt; Download or transfer
-                information &gt; Some of your information
-              </li>
-              <li className='leading-7'>
-                4. Scroll down under &quot;Connections&quot; and select Followers and Following &gt; Next
-              </li>
-              <li className='leading-7'>
-                5. (IMPORTANT) Set format to JSON &gt; Set the range to whatever you&apos;d like (This will change how
-                many unfollowers you see) &gt; Create files
-              </li>
-              <li className='leading-7'>
-                7. Check for an email sent from Meta and open on it or keep refreshing the download information page
-              </li>
-              <li className='leading-7'>
-                8. Go back to the Download information page &gt; Sign in &gt; Save the zip file
-              </li>
-              <li className='leading-7'>9. Come back to the unfollowers.co website and Upload the zip file</li>
-              <li className='leading-7'>10. Then enjoy :) Happy unfollowing!</li>
-            </ul>
+            <MediaPlayer title='How to use Unfollowers' src='./unfollowers-tutorial.mov'>
+              <MediaProvider />
+              <DefaultVideoLayout icons={defaultLayoutIcons} colorScheme='system' />
+            </MediaPlayer>
           </DialogDescription>
         </DialogHeader>
       </DialogContent>

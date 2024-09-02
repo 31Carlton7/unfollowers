@@ -18,6 +18,7 @@
     "@radix-ui/react-toast": "^1.2.1",
     "@types/adm-zip": "^0.5.5",
     "@uploadthing/react": "^6.7.2",
+    "@vidstack/react": "^1.12.9",
     "adm-zip": "^0.5.15",
     "axios": "^1.7.4",
     "class-variance-authority": "^0.7.0",
