@@ -58,6 +58,11 @@ export default function Home(): JSX.Element {
         <DialogHeader>
           <DialogTitle>How to use unfollowers 🤔</DialogTitle>
           <DialogDescription>
+            <p className='text-slate-500 mb-2 text-xs'>
+              *NOTE*: When in the Instagram app, always check if the person doesn&apos;t follow you back. IG can
+              sometimes return a list of users who actually do follow you back, making Unfollowers show you an incorrect
+              unfollower.
+            </p>
             <MediaPlayer title='How to use Unfollowers' src='./unfollowers-tutorial.mov'>
               <MediaProvider />
               <DefaultVideoLayout icons={defaultLayoutIcons} colorScheme='system' />
