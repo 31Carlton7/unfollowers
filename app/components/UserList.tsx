@@ -23,11 +23,11 @@ export const UserList: React.FC = (): JSX.Element => {
         <ul className='flex flex-col mx-4'>
           {[0, 1, 2, 3, 4].map((i) => (
             <li key={i} className='w-full'>
-              {i === 0 && <UserCard userName='champagnepapi' />}
-              {i === 1 && <UserCard userName='31carlton7' />}
+              {i === 0 && <UserCard userName='31carlton7' />}
+              {i === 1 && <UserCard userName='champagnepapi' />}
               {i === 2 && <UserCard userName='lamineyamal' />}
               {i === 3 && <UserCard userName='sza' />}
-              {i === 4 && <UserCard userName='michaelrubin' />}
+              {i === 4 && <UserCard userName='kingjames' />}
             </li>
           ))}
         </ul>
