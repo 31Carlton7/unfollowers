@@ -28,13 +28,13 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     const unfollowers = getUnfollowers(buffer);
 
     // Capture successful upload in PostHog
-    posthog.capture('Zip File Uploaded', { property: 'Successfully' });
-    posthog.capture('Number of Instagrm Unfollowers', { property: unfollowers.length });
+    posthog.capture('$successfulZipUpload', { property: 'Successfully' });
+    posthog.capture('$numberOfUnfollowers', { property: unfollowers.length });
 
     return new NextResponse(JSON.stringify(unfollowers));
   } catch (e) {
     // Capture failed upload in PostHog
-    posthog.capture('Zip File Uploaded', { property: `With Error: ${(e as Error).message}` });
+    posthog.capture('$successfulZipUpload', { property: `With Error: ${(e as Error).message}` });
 
     return new NextResponse(JSON.stringify({ error: (e as Error).message }), { status: 500 });
   }
