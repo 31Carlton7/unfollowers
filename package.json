@@ -25,7 +25,7 @@
     "clsx": "^2.1.1",
     "concurrently": "^8.0.1",
     "lucide-react": "^0.417.0",
-    "next": "14.2.5",
+    "next": "14.2.35",
     "pnpm": "^9.7.0",
     "posthog-js": "^1.155.2",
     "react": "^18",
