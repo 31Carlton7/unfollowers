@@ -1,30 +1,46 @@
-/**
- * This file defines the context for the user list.
- */
+'use client';
 
-import React, { createContext, useState, useContext, ReactNode, Dispatch, SetStateAction } from 'react';
+import React, { createContext, useState, useContext, type ReactNode, type Dispatch, type SetStateAction } from 'react';
 
-// Define the shape of the context
-interface UserListContextType {
-  usernames: string[];
-  setUsernames: Dispatch<SetStateAction<string[]>>;
+export interface UnfollowerEntry {
+  username: string;
+  followedAtTimestamp: number | null;
 }
 
-// Create the context
+export interface FollowerStats {
+  baseFollowers: number;
+  closeFriends: number;
+  interactionSignals: number;
+  pendingRequests: number;
+  totalAugmentedFollowers: number;
+  followingCount: number;
+  unfollowersCount: number;
+}
+
+interface UserListContextType {
+  unfollowers: UnfollowerEntry[];
+  setUnfollowers: Dispatch<SetStateAction<UnfollowerEntry[]>>;
+  stats: FollowerStats | null;
+  setStats: Dispatch<SetStateAction<FollowerStats | null>>;
+}
+
 const UserListContext = createContext<UserListContextType | undefined>(undefined);
 
-// Create a provider component
 export const UserListProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [usernames, setUsernames] = useState<string[]>([]);
+  const [unfollowers, setUnfollowers] = useState<UnfollowerEntry[]>([]);
+  const [stats, setStats] = useState<FollowerStats | null>(null);
 
-  return <UserListContext.Provider value={{ usernames, setUsernames }}>{children}</UserListContext.Provider>;
+  return (
+    <UserListContext.Provider value={{ unfollowers, setUnfollowers, stats, setStats }}>
+      {children}
+    </UserListContext.Provider>
+  );
 };
 
-// Create a custom hook to use the context
 export const useUserListContext = () => {
   const context = useContext(UserListContext);
   if (context === undefined) {
-    throw new Error('useUsernameContext must be used within a UsernameProvider');
+    throw new Error('useUserListContext must be used within a UserListProvider');
   }
   return context;
 };
