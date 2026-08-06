@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <div className='flex w-full justify-between'>
       <a href='https://www.charmtechnologies.co' target='_blank'>
-        <p className='text-[#222222] font-bold text-xl mx-8 my-4'>© Charm Technologies 2024</p>
+        <p className='text-[#222222] font-bold text-xl mx-8 my-4'>© Unfollowers 2026</p>
       </a>
       <div className='flex gap-2 mr-4'>
         <a href='https://www.twitter.com/31carlton7' target='_blank'>
