@@ -1,43 +1,44 @@
 'use client';
 
-import React, { createContext, useState, useContext, type ReactNode, type Dispatch, type SetStateAction } from 'react';
+import { createContext, useCallback, useContext, useMemo, useState, type ReactNode } from 'react';
+import type { ProcessResult, UnfollowerEntry } from '@/lib/instagram';
 
-export interface UnfollowerEntry {
-  username: string;
-  followedAtTimestamp: number | null;
-}
-
-export interface FollowerStats {
-  baseFollowers: number;
-  closeFriends: number;
-  interactionSignals: number;
-  pendingRequests: number;
-  totalAugmentedFollowers: number;
-  followingCount: number;
-  unfollowersCount: number;
-}
+export type FollowerStats = ProcessResult['stats'];
+export type { UnfollowerEntry };
 
 interface UserListContextType {
   unfollowers: UnfollowerEntry[];
-  setUnfollowers: Dispatch<SetStateAction<UnfollowerEntry[]>>;
   stats: FollowerStats | null;
-  setStats: Dispatch<SetStateAction<FollowerStats | null>>;
+  hasResults: boolean;
+  setResults: (unfollowers: UnfollowerEntry[], stats: FollowerStats) => void;
+  clearResults: () => void;
 }
 
 const UserListContext = createContext<UserListContextType | undefined>(undefined);
 
-export const UserListProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+export const UserListProvider = ({ children }: { children: ReactNode }) => {
   const [unfollowers, setUnfollowers] = useState<UnfollowerEntry[]>([]);
   const [stats, setStats] = useState<FollowerStats | null>(null);
 
-  return (
-    <UserListContext.Provider value={{ unfollowers, setUnfollowers, stats, setStats }}>
-      {children}
-    </UserListContext.Provider>
+  const setResults = useCallback((entries: UnfollowerEntry[], newStats: FollowerStats) => {
+    setUnfollowers(entries);
+    setStats(newStats);
+  }, []);
+
+  const clearResults = useCallback(() => {
+    setUnfollowers([]);
+    setStats(null);
+  }, []);
+
+  const value = useMemo(
+    () => ({ unfollowers, stats, hasResults: stats !== null, setResults, clearResults }),
+    [unfollowers, stats, setResults, clearResults],
   );
+
+  return <UserListContext.Provider value={value}>{children}</UserListContext.Provider>;
 };
 
-export const useUserListContext = () => {
+export const useUserListContext = (): UserListContextType => {
   const context = useContext(UserListContext);
   if (context === undefined) {
     throw new Error('useUserListContext must be used within a UserListProvider');

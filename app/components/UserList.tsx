@@ -14,6 +14,8 @@ const FILTER_OPTIONS: { key: FilterKey; label: string }[] = [
   { key: '1y', label: '1 year' },
 ];
 
+const PLACEHOLDER_NAMES = ['31carlton7', 'champagnepapi', 'lamineyamal', 'sza', 'kingjames'];
+
 function filterCutoff(key: FilterKey): number {
   const now = Date.now() / 1000;
   switch (key) {
@@ -30,54 +32,35 @@ function filterCutoff(key: FilterKey): number {
   }
 }
 
-export const UserList: React.FC = (): JSX.Element => {
-  const { unfollowers, stats } = useUserListContext();
+export const UserList = () => {
+  const { unfollowers, stats, hasResults } = useUserListContext();
   const [activeFilter, setActiveFilter] = useState<FilterKey>('all');
 
-  const hasResults = unfollowers.length > 0 && unfollowers[0].username !== '-1';
-  const isEmpty = unfollowers.length === 1 && unfollowers[0].username === '-1';
-
   const filtered = useMemo(() => {
-    if (!hasResults) return [];
     if (activeFilter === 'all') return unfollowers;
     const cutoff = filterCutoff(activeFilter);
-    return unfollowers.filter(
-      (u) => u.followedAtTimestamp !== null && u.followedAtTimestamp >= cutoff,
-    );
-  }, [unfollowers, activeFilter, hasResults]);
+    return unfollowers.filter((u) => u.followedAtTimestamp !== null && u.followedAtTimestamp >= cutoff);
+  }, [unfollowers, activeFilter]);
 
   return (
     <div className='w-full max-w-lg mx-auto px-4'>
-      {/* Stats bar — only shown after a successful upload */}
       {stats && (
         <div className='mb-4 rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-600'>
           <p className='font-semibold text-slate-800 mb-2'>Data summary</p>
           <div className='grid grid-cols-2 gap-x-6 gap-y-1'>
             <span>Following</span>
             <span className='font-medium text-slate-800'>{stats.followingCount}</span>
-            <span>Followers (base)</span>
-            <span className='font-medium text-slate-800'>{stats.baseFollowers}</span>
-            <span>Close friends</span>
-            <span className='font-medium text-slate-800'>+{stats.closeFriends}</span>
-            {stats.interactionSignals > 0 && (
-              <>
-                <span>Interactions</span>
-                <span className='font-medium text-slate-800'>+{stats.interactionSignals}</span>
-              </>
-            )}
-            <span>Pending requests</span>
-            <span className='font-medium text-slate-800'>{stats.pendingRequests}</span>
-            <span className='font-semibold text-slate-800 pt-1 border-t border-slate-200'>Total confirmed followers</span>
-            <span className='font-bold text-slate-900 pt-1 border-t border-slate-200'>{stats.totalAugmentedFollowers}</span>
+            <span>Followers</span>
+            <span className='font-medium text-slate-800'>{stats.followersCount}</span>
+            <span className='font-semibold text-slate-800 pt-1 border-t border-slate-200'>
+              Don&apos;t follow you back
+            </span>
+            <span className='font-bold text-slate-900 pt-1 border-t border-slate-200'>{stats.unfollowersCount}</span>
           </div>
-          <p className='mt-3 font-semibold text-slate-800'>
-            {stats.unfollowersCount} unfollower{stats.unfollowersCount !== 1 ? 's' : ''} found
-          </p>
         </div>
       )}
 
-      {/* Followed-since filter — only shown when there are results */}
-      {hasResults && (
+      {hasResults && unfollowers.length > 0 && (
         <div className='mb-4 flex flex-wrap gap-2 justify-center'>
           <span className='text-xs text-slate-500 self-center mr-1'>Followed since:</span>
           {FILTER_OPTIONS.map((opt) => (
@@ -97,10 +80,9 @@ export const UserList: React.FC = (): JSX.Element => {
         </div>
       )}
 
-      {/* Placeholder cards before upload */}
-      {unfollowers.length === 0 && (
+      {!hasResults && (
         <ul className='flex flex-col'>
-          {['31carlton7', 'champagnepapi', 'lamineyamal', 'sza', 'kingjames'].map((name) => (
+          {PLACEHOLDER_NAMES.map((name) => (
             <li key={name} className='w-full'>
               <UserCard userName={name} />
             </li>
@@ -108,20 +90,24 @@ export const UserList: React.FC = (): JSX.Element => {
         </ul>
       )}
 
-      {/* No unfollowers found */}
-      {isEmpty && <p className='text-center text-slate-500'>No unfollowers found</p>}
+      {hasResults && unfollowers.length === 0 && (
+        <p className='text-center text-slate-500'>No unfollowers found — everyone you follow follows you back! 🎉</p>
+      )}
 
-      {/* Filtered results */}
-      {hasResults && (
+      {hasResults && unfollowers.length > 0 && (
         <>
           {activeFilter !== 'all' && (
             <p className='text-xs text-slate-400 text-center mb-2'>
               Showing {filtered.length} of {unfollowers.length}
             </p>
           )}
-          {filtered.map((entry) => (
-            <UserCard key={entry.username} userName={entry.username} />
-          ))}
+          <ul className='flex flex-col'>
+            {filtered.map((entry) => (
+              <li key={entry.username} className='w-full'>
+                <UserCard userName={entry.username} />
+              </li>
+            ))}
+          </ul>
         </>
       )}
     </div>

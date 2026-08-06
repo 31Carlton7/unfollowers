@@ -14,7 +14,7 @@ With this list, you can easily unfollow these users by clicking the user card an
 
 ## Get Started
 
-To start using Unfollowers, simply go to our website and upload your follower data. There's a guide to get follower data on our site. Our tool will then analyze your followers and following data and provide you with the list of users who don't follow you back.
+To start using Unfollowers, simply go to our website and upload your follower data — the full Instagram export ZIP, or just the followers/following files from it. Both the JSON and HTML export formats are supported. There's a guide to get follower data on our site. Our tool will then analyze your followers and following data and provide you with the list of users who don't follow you back.
 
 ## Developer Info
 

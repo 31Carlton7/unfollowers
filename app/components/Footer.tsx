@@ -1,16 +1,6 @@
-/**
- * This component renders a footer component with copyright information and an Instagram link.
- */
-
-import React from 'react';
 import { FaInstagram, FaTwitter } from 'react-icons/fa';
 
-/**
- * Renders a footer component with copyright information and an Instagram link.
- *
- * @return {JSX.Element} The rendered footer component.
- */
-const Footer = (): JSX.Element => {
+const Footer = () => {
   return (
     <div className='flex w-full justify-between'>
       <a href='https://www.charmtechnologies.co' target='_blank'>

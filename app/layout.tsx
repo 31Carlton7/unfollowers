@@ -1,20 +1,10 @@
-/**
- * This file defines the layout of the app.
- */
-
 import type { Metadata } from 'next';
 import { Plus_Jakarta_Sans } from 'next/font/google';
 import './globals.css';
-import '@fortawesome/fontawesome-svg-core/styles.css';
-import { config } from '@fortawesome/fontawesome-svg-core';
-import './globals.css';
 import { CSPostHogProvider } from './providers';
-config.autoAddCss = false;
 
-// Set the font family for Plus Jakarta Sans
 const plusJakartaSans = Plus_Jakarta_Sans({ subsets: ['latin'] });
 
-// Define the metadata
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.unfollowers.co'),
   title: 'Unfollowers - Track Who Unfollowed You On Instagram Safely',
@@ -43,29 +33,21 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Unfollowers - Track Instagram Unfollowers Safely',
     description: "Discover who doesn't follow you back on Instagram with Unfollowers.",
-    siteId: '',
     creator: '@31carlton7',
-    creatorId: '',
     images: ['https://www.unfollowers.co/visual.png'],
   },
 };
 
-/**
- * A description of the entire function.
- *
- * @param {Readonly<{ children: React.ReactNode; }>} children - The child elements to be rendered.
- * @return {JSX.Element} The rendered HTML body element.
- */
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
-}>): JSX.Element {
+}>) {
   return (
     <html lang='en'>
-      <CSPostHogProvider>
-        <body className={plusJakartaSans.className}>{children}</body>
-      </CSPostHogProvider>
+      <body className={plusJakartaSans.className}>
+        <CSPostHogProvider>{children}</CSPostHogProvider>
+      </body>
     </html>
   );
 }
